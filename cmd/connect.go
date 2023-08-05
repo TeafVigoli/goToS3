@@ -32,10 +32,14 @@ func init() {
 	rootCmd.AddCommand(connectCmd)
 
 	connectCmd.Flags().StringVar(&endpoint, "endpoint", "", "kafka connection endpoint")
-	connectCmd.MarkFlagRequired("endpoint")
+	_, err := connectCmd.MarkFlagRequired("endpoint")
 	
 	connectCmd.Flags().StringVar(&port, "port", "", "kafka connection endpoint")
-	connectCmd.MarkFlagRequired("port")
+	_, err = connectCmd.MarkFlagRequired("port")
+
+	if err != nil {
+        return fmt.Errorf("enpoint or port not set: %w", err)
+    }
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
