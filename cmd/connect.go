@@ -10,10 +10,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var endpoint string
+var port string
+
 // connectCmd represents the connect command
 var connectCmd = &cobra.Command{
 	Use:   "connect",
-	Short: "A brief description of your command",
+	Short: "Connect and list basic stats for a Kafka endpoint",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -28,11 +31,11 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(connectCmd)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// connectCmd.PersistentFlags().String("foo", "", "A help for foo")
+	connectCmd.Flags().StringVar(&endpoint, "endpoint", "", "kafka connection endpoint")
+	connectCmd.MarkFlagRequired("endpoint")
+	
+	connectCmd.Flags().StringVar(&port, "port", "", "kafka connection endpoint")
+	connectCmd.MarkFlagRequired("port")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
