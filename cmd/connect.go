@@ -1,6 +1,5 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -32,12 +31,10 @@ func init() {
 	rootCmd.AddCommand(connectCmd)
 
 	connectCmd.Flags().StringVar(&endpoint, "endpoint", "", "kafka connection endpoint")
-	_, err := connectCmd.MarkFlagRequired("endpoint")
-	
-	connectCmd.Flags().StringVar(&port, "port", "", "kafka connection endpoint")
-	_, err = connectCmd.MarkFlagRequired("port")
+	//nolint:all
+	connectCmd.MarkFlagRequired("endpoint")
 
-	if err != nil {
-        return fmt.Errorf("enpoint or port not set: %w", err)
-    }
+	connectCmd.Flags().StringVar(&port, "port", "", "kafka connection endpoint")
+	//nolint:all
+	connectCmd.MarkFlagRequired("port")
 }
