@@ -11,5 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: echo Hello from Octo Organization
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: Build
+        run: go build -v -ldflags="-s -w" ./...
+
+      - name: Test
+        run: go test -v ./...
+
