@@ -40,8 +40,4 @@ func init() {
 	if err != nil {
         return fmt.Errorf("enpoint or port not set: %w", err)
     }
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// connectCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
